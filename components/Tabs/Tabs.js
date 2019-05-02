@@ -1,93 +1,72 @@
-class TabCard {
-  constructor(element) {
-    // Use a jQuery selector to assign this.element to the DOM reference
-    this.element = $(element);
-  }
-  selectCard() {
-    // show the card
-    this.element.show();
-  }
-  deselectCard() {
-    // hide the card
-    this.element.hide();
-  }
-}
-
 class TabLink {
-  constructor(element, parent) {
-    // Use a jQuery selector to assign this.element to the DOM reference
-    this.element = $(element);
-    // assign this.parent to the parent parameter
-    this.parent = parent;
-
-    // Note that we are calling getCards() on Tabs (The parent of TabLink) and 
-    //passing the data attribute: data-tab, no need to update this line of code.
-    this.cards = this.parent.getCards(this.element.data('tab'));
-
-    // Using jQuery, map over the array of cards.  In your callback function, 
-    //create new instances of the TabCard class that contain a card reference. TabCard(card) as an example.
-    this.cards = this.cards.map((index, card) => new TabCard(card, this));
-
-    // You will need to create a click handler for the TabLink element that calls selectTab()
-    this.element.click(() => this.selectTab());
-  }
-
-  selectTab() {
-    // use this.parent to call the updateActive() method and pass the `this` keyword as a parameter
-    this.parent.updateActive(this);
-    // using a jQuery method, add a class to this.element named "active-tab"
-    this.element.addClass('active-tab');
-    // iterate over each card using the .each() method in jQuery. call 
-    //the selectCard() method in your callback function
-    this.cards.each((index, card) => card.selectCard());
-  }
-
-  deselectTab() {
-    // use a jQuery method to remove the class "active-tab" from this.element
-    this.element.removeClass('active-tab');
-    // iterate over each card using the .each() method in jQuery. call the deselectCard() method in your callback function
-    this.cards.each((index, card) => card.deselectCard());
-  }
-}
-
-class Tabs {
-  constructor(element){
-    this.element = $(element);
+  constructor(tabElement){
+    // assign this.tabElement to the tabElement DOM reference
+    // this.tabElement;
     
-    // Using jQuery, find all of the tabs on this element.
-    this.tabs = this.element.find(".tab");
-
-    this.tabs = this.tabs.map( (i, tab) => new TabLink(tab, this) );
+    // Get the `data-tab` value from this.tabElement and store it here
+    // this.tabData = ; 
     
-    // Set the initial active tab to the first tab in the list.
-    this.activeTab = this.tabs[0];
-
-    this.init();
-  }
-
-  init(){
-    // use activeTab to call the selectTab() method
-    this.activeTab.selectTab();
-  }
-
-  updateActive(tabElement){
-    // use activeTab to call the deselectTab() method
-    this.activeTab.deselectTab();
-    // assign activeTab to tabElement
-    this.activeTab = tabElement;
-  }
-
-  getCards(data){
-    // This method is meant to get all the cards from the HTML page.  
-    // If the data supplied is 'all' then all of the cards should be returned. 
-    // Otherwise, only cards matching the data attribute should be returned.
-    if (data === "all") {
-      return $(".card");
+    // We need to find out if a user clicked 'all' cards or a specific category.  Follow the instructions below to accomplish this task:    
+    
+    /* <- Delete this comment block when you work on the if statement
+    // Check to see if this.tabData is equal to 'all'
+    if(){
+      // If `all` is true, select all cards regardless of their data attribute values
+      // this.cards = ;
+    } else {
+      // else if `all` is false, only select the cards with matching this.tabData values
+      // this.cards = ;
     }
-      return $(`.card[data-tab="${data}"]`);
+    /* <- Delete this comment block when you work on the if statement
+
+     // Map over the newly converted NodeList we just created in our if statement above. Convert each this.cards element into a new instance of the TabCard class. Pass in a card object to the TabCard class. 
+    // this.cards = Array.from(this.cards).map();
+
+    // Add a click event that invokes this.selectTab
+    // this.tabElement.addEventListener();
+  }
+
+  selectTab(){
+
+    // Select all elements with the .tab class on them
+    // const tabs = document.querySelectorAll();
+    
+    // Iterate through the NodeList removing the .active-tab class from each element
+    // tabs.forEach()
+
+    // Select all of the elements with the .card class on them
+    // const cards = ;
+
+    // Iterate through the NodeList setting the display style each one to 'none'
+    // cards.forEach()
+    
+    // Add a class of ".active-tab" to this.tabElement
+    // this.tabElement;
+  
+    // Notice we are looping through the this.cards array and invoking selectCard() from the TabCard class. Just un-comment the code and study what is happening here.
+    // this.cards.forEach(card => card.selectCard());
   }
 }
 
-// Using jQuery, select the correct tabs component. Then initialize the Tabs class.
-let tabs = $('.tabs');
-tabs = new Tabs(tabs);
+class TabCard {
+  constructor(cardElement){
+    // Assign this.cardElement to the cardElement DOM reference
+    // this.cardElement;
+  }
+  selectCard(){
+    // Update the style of this.cardElement to display = "flex"
+    // this.cardElement;
+  }
+
+}
+
+/* START HERE: 
+
+- Select all classes named ".tab" and assign that value to the tabs variable
+
+- With your selection in place, now chain a .forEach() method onto the tabs variable to iterate over the DOM NodeList
+
+- In your .forEach() method's callback function, return a new instance of TabLink and pass in each tab as a parameter
+
+*/
+let tabs = document.querySelectorAll();
