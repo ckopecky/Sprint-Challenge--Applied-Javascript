@@ -14,9 +14,9 @@ class TabLink {
         break;
     }
     this.cards = Array.from(this.cards).map(card => new TabCard(card));
-    
+
     this.tabElement.addEventListener('click', () => this.selectTab());
-    }
+  }
 
 
 
@@ -28,20 +28,20 @@ class TabLink {
     tabs.forEach(tab => {
       tab.classList.remove('active-tab');
     });
-    
+
     const cards = document.querySelectorAll('.card');
     // console.log('cards', cards);
-
+    
     cards.forEach(card => {
       card.style.display = 'none';
     })
 
     this.tabElement.classList.add('active-tab');
-    
+
     this.cards.forEach(card => card.selectCard());  
   }
 }
-
+  
 class TabCard {
   constructor(cardElement){
     // Assign this.cardElement to the cardElement DOM reference
