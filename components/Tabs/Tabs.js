@@ -47,7 +47,8 @@ class TabLink {
 class TabCard {
   constructor(cardElement){
     // Assign this.cardElement to the cardElement DOM reference
-    // this.cardElement;
+    this.cardElement = cardElement;
+    // console.log(this.cardElement, 'card element from TabCard');
   }
   selectCard(){
     // Update the style of this.cardElement to display = "flex"
