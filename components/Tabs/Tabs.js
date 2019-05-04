@@ -50,11 +50,11 @@ class TabCard {
     this.cardElement = cardElement;
     // console.log(this.cardElement, 'card element from TabCard');
   }
+  //methods
   selectCard(){
     // Update the style of this.cardElement to display = "flex"
-    // this.cardElement;
+    this.cardElement.style.display = 'flex';
   }
-
 }
 
 /* START HERE: 
